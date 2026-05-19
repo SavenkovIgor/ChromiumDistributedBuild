@@ -8,3 +8,9 @@ else
     echo "depot_tools already exists in $(pwd)/depot_tools"
 fi
 
+if [ ! -d "$(pwd)/chromium" ]; then
+    echo "Fetching chromium source code into $(pwd)/chromium"
+    fetch --no-history chromium
+else
+    echo "chromium directory already exists in $(pwd)/chromium"
+fi
