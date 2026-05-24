@@ -14,3 +14,6 @@ if [ ! -d "$(pwd)/chromium" ]; then
 else
     echo "chromium directory already exists in $(pwd)/chromium"
 fi
+
+echo "Installing build dependencies"
+./src/build/install-build-deps.sh

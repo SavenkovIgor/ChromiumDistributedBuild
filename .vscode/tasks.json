@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "type": "shell",
+    "problemMatcher": [],
+    "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+    },
+    "tasks": [
+        {
+            "label": "Start NativeLink (Docker)",
+            "command": "docker run -v $(pwd)/basic_cas.json5:/config -p 50051:50051 ghcr.io/tracemachina/nativelink:v1.3.0 config",
+            "options": {
+                "cwd": "${workspaceFolder}/native_link"
+            },
+            "isBackground": true
+        },
+        {
+            "label": "GN Gen (remote exec)",
+            "command": "gn gen out/Default --args='use_remoteexec=true is_debug=false'",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            }
+        },
+        {
+            "label": "Autoninja: build chrome",
+            "command": "autoninja -C out/Default chrome",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            }
+        },
+        {
+            "label": "Autoninja: build chrome (slow, -j 2)",
+            "command": "autoninja -C out/Default chrome -j 2",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            }
+        }
+    ]
+}
